@@ -1,0 +1,24 @@
+import pandas as pd
+
+# Load dataset
+df = pd.read_csv("churn.csv")
+
+# Drop missing values
+df.dropna(inplace=True)
+
+# Convert TotalCharges
+df['TotalCharges'] = pd.to_numeric(df['TotalCharges'], errors='coerce')
+
+# Churn count
+print("Churn Count:\n", df['Churn'].value_counts())
+
+# Average Monthly Charges
+avg = df.groupby('Churn')['MonthlyCharges'].mean()
+print("\nAverage Monthly Charges:\n", avg)
+
+# Contract vs Churn
+contract = pd.crosstab(df['Contract'], df['Churn'])
+print("\nContract vs Churn:\n", contract)
+
+# Save cleaned data
+df.to_csv("cleaned_churn.csv", index=False)

@@ -1,0 +1,17 @@
+-- Total Customers
+SELECT COUNT(*) FROM churn;
+
+-- Churn Distribution
+SELECT Churn, COUNT(*) 
+FROM churn
+GROUP BY Churn;
+
+-- Avg Monthly Charges
+SELECT Churn, AVG(MonthlyCharges)
+FROM churn
+GROUP BY Churn;
+
+-- Contract Type Analysis
+SELECT Contract, COUNT(*)
+FROM churn
+GROUP BY Contract;
